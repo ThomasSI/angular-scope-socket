@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body class="container" ng-controller="testCtrl">
+
+<div class="row">
+
+    <div class="form-group">
+        <label>$scope.title </label>
+        <label> {{title}} </label>
+        <input type="text"  class="form-control" ng-model="title" >
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>$scope.name </label>
+        <label> {{name}} </label>
+        <input type="text"  class="form-control" ng-model="name" >
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>$scope.arr[2] </label>
+        <label> {{arr[2]}} </label>
+        <input type="text"  class="form-control" ng-model="arr[2]" >
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>$scope.arr[5].data.data.value </label>
+        <label> {{arr[5].data.data.value}} </label>
+        <input type="text"  class="form-control" ng-model="arr[5].data.data.value" >
+    </div>
+</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="bower_components/angular/angular.js" ></script>
+<script src="bower_components/angular-scope-sync/angular-scope-sync.js" ></script>
+
+<script src="app.js" ></script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "exampleApp",
+  "main": "app.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ThomasSI/angular-scope-socket",
+  "authors": [
+    "Thomas Schulz <schulz@seamlessinteraction.com>"
+  ],
+  "description": "example for angular-scope-sync",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "example",
+    "angular",
+    "angular-scope-sync"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.2",
+    "angular-scope-sync": "*"
+  }
+}
