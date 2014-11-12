@@ -23,7 +23,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "angular": "~1.3.2"
   }
 }
