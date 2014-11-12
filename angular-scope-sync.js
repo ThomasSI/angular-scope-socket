@@ -24,7 +24,7 @@
 
 
                   if( typeof defaultObj[defaultKey] === 'object' ){
-                    bindSync(defaultObj[defaultKey] , defaultKey + '.' );
+                    bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey + '.' );
                   }else{
 
                     (function ( obj , key  ) {
