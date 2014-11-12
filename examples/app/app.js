@@ -18,13 +18,11 @@
 
     $scope.title = "sync test";
 
-    $scope.name = "testName";
-
-    $scope.data = {
+    $scope.object = {
       test : "test",
       data : {
         data : {
-          value : 112224
+          value : 12345
         }
       }
     };
@@ -33,7 +31,7 @@
       test : "test",
       data : {
         data : {
-          value : 112224
+          value : 12345
         }
       }
     },7];
