@@ -6,7 +6,7 @@
   'use strict';
 
   angular.module('scope-sync', []).
-      provider('sync-service', function () {
+      provider('syncService', function () {
         // expose to provider
         this.$get = function ($rootScope, $location, $log) {
 
