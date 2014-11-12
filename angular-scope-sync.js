@@ -18,7 +18,7 @@
 
             (function bindSync( defaultObj , objnsp ){
               for(var defaultKey in defaultObj){
-                if ( defaultObj.hasOwnProperty(defaultKey) && !defaultKey.startsWith('$') && typeof defaultObj[defaultKey] !== 'function' ) {
+                if ( defaultObj.hasOwnProperty(defaultKey) && defaultKey.indexOf('$') !== 0 && typeof defaultObj[defaultKey] !== 'function' ) {
 
                   console.log(typeof defaultObj[defaultKey]);
 
