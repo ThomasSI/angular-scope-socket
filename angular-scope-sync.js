@@ -25,7 +25,11 @@
                     if(Array.isArray(defaultObj[defaultKey])){
                       bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey );
                     }else{
-                      bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey + '.' );
+                      if(Array.isArray(defaultObj)){
+                        bindSync(defaultObj[defaultKey] , (objnsp||"") + "[" + defaultKey + '].' );
+                      }else{
+                        bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey + '.' );
+                      }
                     }
 
                   }else{
