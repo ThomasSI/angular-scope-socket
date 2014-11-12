@@ -20,18 +20,24 @@
               for(var defaultKey in defaultObj){
                 if ( defaultObj.hasOwnProperty(defaultKey) && defaultKey.indexOf('$') !== 0 && typeof defaultObj[defaultKey] !== 'function' ) {
 
-                  console.log(typeof defaultObj[defaultKey]);
-
-
                   if( typeof defaultObj[defaultKey] === 'object' ){
-                    bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey + '.' );
+
+                    if(Array.isArray(defaultObj[defaultKey])){
+                      bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey );
+                    }else{
+                      bindSync(defaultObj[defaultKey] , (objnsp||"") + defaultKey + '.' );
+                    }
+
                   }else{
 
                     (function ( obj , key  ) {
                       var valueClosure = obj[key];
-
-                      var syncNamespace = (scopensp || "") + "/" + (objnsp || "") + key;
-
+                      var syncNamespace;
+                      if(Array.isArray(defaultObj)){
+                        syncNamespace = (scopensp || "") + "/" + (objnsp || "") + "[" + key + "]" ;
+                      }else{
+                        syncNamespace = (scopensp || "") + "/" + (objnsp || "") + key;
+                      }
                       // register for incoming changes from the server
                       socket.on( syncNamespace , function(data){
                         valueClosure = data;
@@ -57,11 +63,9 @@
                 }
               }
             })( scopeObj );
-
-
           }
-          return { sync: sync };
 
+          return { sync: sync };
         }
       });
 
