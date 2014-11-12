@@ -98,3 +98,20 @@ proxy :  base/arr[2] 34
 proxy :  base/arr[5].data.data.value 123456
 ```
 
+run the example
+===============
+
+open terminal and run
+
+```bash
+   git clone git@github.com:ThomasSI/angular-scope-socket.git
+   cd angular-scope-socket
+   cd examples
+   npm install
+   cd app
+   bower install
+   cd ..
+   node server
+```
+
+open two or more browser with http://localhost:8080/ and play
