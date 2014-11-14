@@ -7,14 +7,27 @@
 
   angular.module('scope-sync', []).
       provider('syncService', function () {
+        var socket;
+
+        this.connect = function(){
+          if(io && io.connect){
+            socket = io.connect.apply(this , arguments);
+          }
+        };
+
+        this.io = function(){
+          if(io){
+            socket = io.apply(this , arguments);
+          }
+        };
 
 
 
         // expose to provider
         this.$get = function () {
 
-          var socket = io.connect();
-
+          // if the socket is created in the provider stop auto connect
+          socket = socket || io.connect();
 
           function sync( scopeObj , scopensp ){
 
