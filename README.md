@@ -103,7 +103,7 @@ Run the Example
 Open terminal and run
 
 ```bash
-   git clone git@github.com:ThomasSI/angular-scope-socket.git
+   git clone https://github.com/ThomasSI/angular-scope-socket.git
    cd angular-scope-socket
    cd examples
    npm install
