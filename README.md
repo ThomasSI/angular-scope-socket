@@ -1,19 +1,19 @@
 angular-scope-socket
 ====================
 
-angular-scope-sync is a service to create 3-way-bindings between angular-js scopes and a socket-io server
+angular-scope-sync is a service to create 3-way-bindings between angular-js, scopes and a socket-io server.
 
-the service provides a sync function to extend the angular scope object with functionality to send and receive changes on properties
+The service provides a sync function to extend the angular scope object with functionality to send and receive changes on properties.
 
 
-example
+Example
 =======
-short example for controller
+Short example for controller
 
 
-example controller
+Example Controller
 ------------------
-after creating all properties on $scope call the sync function
+After creating all properties on $scope, call the sync function:
 
 ```js
 angular.module("app").controller("testCtrl", function ($scope , syncService ) {
@@ -21,42 +21,41 @@ angular.module("app").controller("testCtrl", function ($scope , syncService ) {
     syncService.sync($scope );
 });
 ```
-after calling the sync function the syncService emits all changes of properties to the socket.io server
-and listen to event from the socket.io server.
+After calling the sync function the syncService emits all changes of properties to the socket.io server and listens for events from the socket.io server.
 
-The service listen for auto generated namespaces from the server.
-The namespace is build with the following schema:
+The service listens for auto generated namespaces from the server.
+Namespace can be built using the following schema:
 
-basic Namespace
+Basic Namespace
 -----
 ```js
 syncService.sync($scope , optionalNamespace );
-socketIONamespace = optionalNamespace + "/" + scopePropertie
+socketIONamespace = optionalNamespace + "/" + scopeProperty
 ```
 
 
-with object in object Namespace
+Nested Objects as Cascading Namespace
 ---------------------
 ```js
 syncService.sync($scope , optionalNamespace );
-socketIONamespace = optionalNamespace + "/" + scopePropertie.objectPropertie
+socketIONamespace = optionalNamespace + "/" + scopeProperty.objectProperty
 ```
 
-elements of arrays Namespace
+Elements of Arrays Namespace
 ------------------
 ```js
 syncService.sync($scope , optionalNamespace );
 socketIONamespace = optionalNamespace + "/" + scopeArray[elementIndex]
 ```
 
-objects as elements of arrays Namespace
+Objects as Elements of Arrays Namespace
 -----------------------------
 ```js
 syncService.sync($scope , optionalNamespace );
-socketIONamespace = optionalNamespace + "/" + scopeArray[elementIndex].elementPropertie
+socketIONamespace = optionalNamespace + "/" + scopeArray[elementIndex].elementProperty
 ```
 
-example Server
+Example Server
 ==============
 ```js
 var port = 8080;
@@ -82,15 +81,15 @@ io.on('connection', function (socket) {
 });
 ```
 
-output from the server for incoming messages
+Output from the Server for Incoming Messages
 --------------------------------------------
-the sync service is called with:
+The sync service is called with:
 
 ```js
 syncService.sync($scope , "base");
 ```
 
-output:
+Output:
 ```js
 proxy :  base/title sync test 1
 proxy :  base/object.data.data.value 123456
@@ -98,10 +97,10 @@ proxy :  base/arr[2] 34
 proxy :  base/arr[5].data.data.value 123456
 ```
 
-run the example
+Run the Example
 ===============
 
-open terminal and run
+Open terminal and run
 
 ```bash
    git clone git@github.com:ThomasSI/angular-scope-socket.git
@@ -114,4 +113,4 @@ open terminal and run
    node server
 ```
 
-open two or more browser with http://localhost:8080/ and play
+Open two or more browsers with http://localhost:8080/ and play!
