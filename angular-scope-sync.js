@@ -7,8 +7,11 @@
 
   angular.module('scope-sync', []).
       provider('syncService', function () {
+
+
+
         // expose to provider
-        this.$get = function ($rootScope, $location, $log) {
+        this.$get = function () {
 
           var socket = io.connect();
 
