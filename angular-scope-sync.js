@@ -29,12 +29,40 @@
           // if the socket is created in the provider stop auto connect
           socket = socket || io.connect();
 
-          function sync( scopeObj , scopensp ){
-
+          /**
+           * this function sync the given controller scope and call the apply method on socket.io changes
+           * @param scopeObj : scope for syncing
+           * @param scopensp : an optional namespace as prefix for communication
+           * @param filterPrefix : an optional filterPrefix for properties e.g. filter = "_"; scope.test1 synced; scope._test1 not synced;
+           */
+          function sync( scopeObj , scopensp , filterPrefix  ){
 
             (function bindSync( defaultObj , objnsp ){
+
+
+              // add watcher to all objects
+              Object.observe(defaultObj, function changeListener(changes){
+                // This asynchronous callback runs
+                changes.forEach(function(change) {
+                  // Letting us know what changed
+                  //console.log(change.type, change.name, change.oldValue);
+
+                  if(change.type === 'add' && typeof change.object[change.name] === 'object'){
+                    // bad hack but works
+                    // is to slow
+                    bindSync(change.object , objnsp);
+                    Object.observe(change.object[change.name] , changeListener);
+                  }
+                });
+              });
+
+
               for(var defaultKey in defaultObj){
-                if ( defaultObj.hasOwnProperty(defaultKey) && defaultKey.indexOf('$') !== 0 && typeof defaultObj[defaultKey] !== 'function' ) {
+                if (defaultObj.hasOwnProperty(defaultKey) &&
+                    defaultKey !== "this" && // ignore property this
+                    ( !filterPrefix || defaultKey.indexOf( filterPrefix ) !== 0 ) && // if a filter is defined then use this filter
+                    defaultKey.indexOf('$') !== 0 && // ignore all angular properties
+                    typeof defaultObj[defaultKey] !== 'function' ) { // ignore all functions
 
                   if( typeof defaultObj[defaultKey] === 'object' ){
 
@@ -83,9 +111,16 @@
                 }
               }
             })( scopeObj );
+
+
+
           }
 
-          return { sync: sync };
+
+          return {
+            sync: sync,
+            io : io
+          };
         }
       });
 
