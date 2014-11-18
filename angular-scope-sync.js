@@ -119,7 +119,7 @@
 
           return {
             sync: sync,
-            io : io
+            socket : socket
           };
         }
       });
